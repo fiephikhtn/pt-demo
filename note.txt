@@ -1,0 +1,6 @@
+# Build cron-batch 
+error : > [ 9/17] RUN crontab /etc/cron.d/cron-batch:
+#14 0.488 new crontab file is missing newline before EOF, can't install.
+------
+executor failed running [/bin/sh -c crontab /etc/cron.d/cron-batch]: exit code: 1
+ERROR: Service 'appb3p' failed to build : Build failed

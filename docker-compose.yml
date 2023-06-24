@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+  # PHP
+  appb3p:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    image: appb3p/php
+    container_name: appb3p-php
+    environment:
+      - SERVICE_NAME=appb3p
+      - SERVICE_TAGS=develop
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - appb3p-network
+
+
+  # Nginx server
+  webserver:
+    image: nginx:alpine
+    container_name: appb3p-webserver
+    ports:
+      - "8001:80"
+      - "4431:443"
+    volumes:
+      - ./:/var/www/html
+      - ./nginx/conf.d/:/etc/nginx/conf.d/
+    networks:
+      - appb3p-network
+
+
+# Networks
+networks:
+  appb3p-network:
+    driver: bridge
+     
