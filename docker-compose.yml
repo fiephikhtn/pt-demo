@@ -17,6 +17,16 @@ services:
     networks:
       - appb3p-network
 
+  # Admin design
+  appb3p-admin-design:
+    build: 
+      context: ./admin-design
+    image: appb3p/admin-design
+    container_name: appb3p-admin-design
+    ports:
+      - "8081:8081"
+    networks:
+      - appb3p-network
 
   # Nginx server
   webserver:
