@@ -11,7 +11,18 @@ services:
     networks:
       - appb3p-network
 
-  # PHP
+  # Front design
+  appb3p-front-design:
+    build:
+      context: ./front-design
+    image: appb3p/front-design
+    container_name: appb3p-front-design
+    ports:
+      - "8080:8080"
+    networks:
+      - appb3p-network
+
+  # PHP : docker-compose exec appb3p bash -c "cd api-design && ls"
   appb3p:
     build:
       context: .
@@ -41,9 +52,32 @@ services:
     networks:
       - appb3p-network
 
+  # Mysql server: docker inspect appb3p-db | grep IPAddress
+  db:
+    image: mysql:8.0.33
+    container_name: appb3p-db
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "4001:3306"
+    environment:
+      - MYSQL_DATABASE=apidesign
+      - MYSQL_ROOT_PASSWORD=root@123
+      - SERVICE_TAGS=dev
+      - SERVICE_NAME=mysql
+    volumes:
+      - dbdata:/var/lib/mysql-files/
+      - ./mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - appb3p-network
+
 
 # Networks
 networks:
   appb3p-network:
     driver: bridge
-     
+
+# Volumes
+volumes:
+  dbdata:
+    driver: local
