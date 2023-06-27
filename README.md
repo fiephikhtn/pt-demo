@@ -13,3 +13,13 @@ docker-compose up -d
 docker-compose exec appb3p bash -c "cd api-design && composer require laravel/breeze --dev"
 ```
 
+# Run local environment Admin
+```bash
+cd admin-design
+npm run dev
+```
+# Run local environment Frontend
+```bash
+cd front-design
+npm run dev
+```

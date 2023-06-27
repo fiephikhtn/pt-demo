@@ -57,9 +57,9 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'frontend_url' => env('FRONTEND_URL', 'http://localhost:3000'),
+    'frontend_url' => (env('APP_ENV', 'production') == 'production') ? env('FRONTEND_URL', 'http://localhost:8080') : env('FRONTEND_URL_' . env('APP_ENV', 'local'), 'http://localhost:3000'),
 
-    'admin_url' => env('ADMIN_URL', 'http://localhost:3001'),
+    'admin_url' => (env('APP_ENV', 'production') == 'production') ? env('ADMIN_URL', 'http://localhost:8081') : env('ADMIN_URL_' . env('APP_ENV', 'local'), 'http://localhost:3001'),
 
     'asset_url' => env('ASSET_URL'),
 
