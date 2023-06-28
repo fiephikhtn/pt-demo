@@ -13,13 +13,31 @@ docker-compose up -d
 docker-compose exec appb3p bash -c "cd api-design && composer require laravel/breeze --dev"
 ```
 
-# Run local environment Admin
+# Run local environment Admin (Vite, Vuejs)
 ```bash
 cd admin-design
 npm run dev
 ```
-# Run local environment Frontend
+# Run local environment Frontend (Nextjs, Reactjs)
 ```bash
 cd front-design
 npm run dev
+```
+
+# Swagger api documentation (Breeze api, sanctum)
+```bash
+composer require "darkaonline/l5-swagger"
+php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
+```
+## Add comment documentation to controller
+/**
+ * @OA\Info(
+ *     version="1.0",
+ *     title="Example for response examples value"
+ * )
+ * @OA\PathItem(path="/api")
+ */
+ 
+ ```bash
+php artisan l5-swagger:generate
 ```
