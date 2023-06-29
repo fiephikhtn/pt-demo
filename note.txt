@@ -4,3 +4,31 @@ error : > [ 9/17] RUN crontab /etc/cron.d/cron-batch:
 ------
 executor failed running [/bin/sh -c crontab /etc/cron.d/cron-batch]: exit code: 1
 ERROR: Service 'appb3p' failed to build : Build failed
+
+// View help docker image
+docker image --help
+
+// View help docker container
+docker container --help
+// View info container
+docker ps -a
+// Exec command to container nginx when set tty=true
+docker exec -it container_name /bin/bash
+or
+docker exec -it container_name /bin/sh
+// Stop and Remove containner .
+docker container rm -f container_name
+// View information container
+docker inspect container_name
+
+// View help Volumes
+docker volumes --help
+
+// View help network
+docker network --help
+// Connect network to container together
+docker network connect network_name container_name
+
+
+// View logs container
+docker logs container_name || container_id

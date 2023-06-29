@@ -8,6 +8,11 @@ docker-compose build --no-cache
 ```bash
 docker-compose up -d
 ```
+3. Stop and remove container
+```bash
+docker-compose down
+```
+
 ## Docker exec to containner
 ```bash
 docker-compose exec appb3p bash -c "cd api-design && composer require laravel/breeze --dev"

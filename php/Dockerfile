@@ -2,24 +2,25 @@ FROM php:8.2-fpm
 WORKDIR /var/www/html
 
 RUN apt-get update && apt-get install -y && apt-get -y install sudo \
-        build-essential \
-        mariadb-client \
-        libzip-dev \
-        libonig-dev \
-		libfreetype-dev \
-		libjpeg62-turbo-dev \
-		libpng-dev \
-        locales \
-        zip \
-        jpegoptim optipng pngquant gifsicle \
-        vim \
-        unzip \
-        git \
-        curl \
-        libmagickwand-dev \
+    build-essential \
+    mariadb-client \
+    libzip-dev \
+    libonig-dev \
+    libfreetype-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    locales \
+    zip \
+    jpegoptim optipng pngquant gifsicle \
+    vim \
+    unzip \
+    git \
+    curl \
+    libmagickwand-dev \
+    iputils-ping \
     && docker-php-ext-install pdo_mysql mbstring zip exif pcntl \
-	&& docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
-	&& docker-php-ext-install -j$(nproc) gd
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
+    && docker-php-ext-install -j$(nproc) gd
 
 # Imagick extension
 RUN pecl install imagick \
@@ -56,7 +57,7 @@ RUN passwd --delete www
 # asked for a password when using
 # sudo command by ammending sudoers file
 RUN echo '%www ALL=(ALL) NOPASSWD:ALL' >> \
-/etc/sudoers
+    /etc/sudoers
 # end add 2021/04/14
 
 # Copy existing application directory contents
