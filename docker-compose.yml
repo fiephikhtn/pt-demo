@@ -1,18 +1,21 @@
 version: '3.3'
 services:
   # Admin design
-  appb3p-admin-design:
+  admin-design:
     build:
       context: ./admin-design
     image: appb3p/admin-design
     container_name: appb3p-admin-design
     ports:
       - "8081:8081"
+    working_dir: /app
+    volumes:
+      - ./admin-design/src:/app/src
     networks:
       - appb3p-network
 
   # Front design
-  appb3p-front-design:
+  front-design:
     build:
       context: ./front-design
     image: appb3p/front-design

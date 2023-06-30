@@ -19,4 +19,6 @@ COPY . .
 RUN npm run build
 
 EXPOSE 8081
+# CMD : instead entire param in CMD when run there are params input.
+# ENTRYPOINT : when run there are params , It will append param input into.
 CMD [ "http-server", "dist", "-p 8081" ]

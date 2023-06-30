@@ -1,5 +1,10 @@
 FROM php:8.2-fpm
-WORKDIR /var/www/html
+
+# ARG : It can enter before or after FROM layer . ARG only using in processing to build the image.
+ARG DIR=/var/www/html
+
+# Move to directory /var/www/html If not dir exist , It'll create new dir.
+WORKDIR $DIR
 
 RUN apt-get update && apt-get install -y && apt-get -y install sudo \
     build-essential \
@@ -49,7 +54,6 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN groupadd -g 1000 www
 RUN useradd -u 1000 -ms /bin/bash -g www www
 
-# start add 2021/04/14
 # Disable password username www
 RUN passwd --delete www
 
@@ -60,11 +64,13 @@ RUN echo '%www ALL=(ALL) NOPASSWD:ALL' >> \
     /etc/sudoers
 # end add 2021/04/14
 
+# ADD . $DIR : not cached but can copy from remote url.
+# COPY . $DIR : cached and can permisstion dir.
 # Copy existing application directory contents
-COPY . /var/www/html
+COPY . $DIR
 
 # Copy existing application directory permissions
-COPY --chown=www:www . /var/www/html
+COPY --chown=www:www . $DIR
 
 # Change current user to www
 USER www

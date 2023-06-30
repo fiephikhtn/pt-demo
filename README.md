@@ -13,6 +13,11 @@ docker-compose up -d
 docker-compose down
 ```
 
+## Build a service
+```bash
+docker compose build [service_name]
+```
+
 ## Docker exec to containner
 ```bash
 docker-compose exec appb3p bash -c "cd api-design && composer require laravel/breeze --dev"

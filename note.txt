@@ -5,6 +5,9 @@ error : > [ 9/17] RUN crontab /etc/cron.d/cron-batch:
 executor failed running [/bin/sh -c crontab /etc/cron.d/cron-batch]: exit code: 1
 ERROR: Service 'appb3p' failed to build : Build failed
 
+// Shell Linux view env
+printenv
+
 // View help docker image
 docker image --help
 
