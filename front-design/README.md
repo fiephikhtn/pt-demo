@@ -1,3 +1,12 @@
+# Build Image
+```bash
+docker build -t front-site:v1 .
+```
+# Run Image
+```bash
+docker run --rm -itd -p 8000:8000 --name my-site front-site:v1
+```
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

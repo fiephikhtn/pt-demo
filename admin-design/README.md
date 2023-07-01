@@ -1,4 +1,13 @@
 # admin-design
+# Build Image
+```bash
+docker build -t admin-site:v1 .
+```
+# Run Image
+```bash
+docker run --rm -itd -p 8081:8081 --name my-admin-site admin-site:v1
+docker run --rm -it -p 9001:9001 --name my-admin-site admin-site:v1
+```
 
 This template should help get you started developing with Vue 3 in Vite.
 
